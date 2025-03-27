@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+.flex-center{
+    @apply flex justify-center items-center
+}
+button{
+    @apply border-1 border-gray-600  p-4 rounded-4xl flex justify-center items-center hover:bg-green-400 cursor-pointer
+}
