@@ -1,12 +1,15 @@
 import { useState } from "react";
 import PlayGame from "./Components/PlayGame";
 
+
 function App() {
+
+  
   const [showType, setShowType] = useState<boolean>(false);
   const TypeOfGrid = [
-    { label: "4*4", size: 4 },
-    { label: "6*6", size: 6 },
-    { label: "8*8", size: 8 },
+    { label: "Easy", size: 4 },
+    { label: "Medium", size: 6 },
+    { label: "Hard", size: 8 },
   ];
   const [isStartGame, setGameStart] = useState<boolean>(false);
   const [gridSize,setGridSize] = useState<number>(4);

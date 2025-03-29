@@ -1,38 +1,48 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
+import { CardRefs, compareArray } from "../store/states";
+import { CompareMoves } from "../utils/helper";
 
+interface CardProp {
+  hiddenElement: string;
+}
 
-const Card = () => {
+const Card = (props: CardProp) => {
+  let CardRef = useRef<HTMLDivElement | null>(null);
 
-    const [CompareElement,setCompareElement]  =useState<string[] | undefined>([])
-    console.log(CompareElement);
-    
-    let FrontSideRef = useRef<HTMLDivElement| null>(null);
-    const SomethingHappen = (event:React.MouseEvent)=>{
-        const siblingElement = event.currentTarget.nextElementSibling?.textContent;
-        if(siblingElement){
-            setCompareElement((prev)=>{
-                if(prev!.length<2){
-                    return [...prev!,siblingElement]
-                }
-                if(prev?.length===2){
-                    console.log(CompareElement![0]===CompareElement![1]);
-                    
-                }
-            })
-
-            
+  const Handler = (event: React.MouseEvent) => {
+    if (CardRefs.value.size <= 1) {
+      const siblingElement =
+        event.currentTarget.nextElementSibling?.textContent;
+      if (siblingElement) {
+        compareArray.value = [...compareArray.value, siblingElement];
+        // flip the cards
+        if (CardRef && CardRef.current) {
+          // store the CardRef globally
+          CardRefs.value.add(CardRef.current);
+          CardRef.current.style.transform = "rotateY(180deg)";
         }
-        
+      }
+
+      // compare the player moves
+      CompareMoves();
     }
+  };
+
   return (
     <>
       <div className="relative h-full w-full">
-        <div className="absolute w-full h-full transform-3d transition-all ease-in-out duration-900 rounded-xl">
-          <div className="absolute w-full h-full backface-hidden bg-blue-500 rounded-xl flex-center text-4xl cursor-pointer" ref={FrontSideRef} onClick={SomethingHappen}>
+        <div
+          className="absolute w-full h-full transform-3d transition-all ease-in-out duration-900 rounded-xl"
+          ref={CardRef}
+        >
+          <div
+            className="absolute w-full h-full backface-hidden bg-blue-500 rounded-xl flex-center text-4xl cursor-pointer"
+            onClick={Handler}
+          >
             ⭐
           </div>
-          <div className="absolute w-full h-full backface-hidden bg-pink-400 rotate-y-180 rounded-xl flex-center text-4xl">
-            😪
+          <div className="absolute w-full h-full backface-hidden bg-black rotate-y-180 rounded-xl flex-center text-4xl">
+            {props.hiddenElement}
           </div>
         </div>
       </div>
