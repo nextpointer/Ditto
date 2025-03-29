@@ -1,18 +1,35 @@
 import { useState } from "react";
 import PlayGame from "./Components/PlayGame";
-
+import { emojiArray16, emojiArray32, emojiArray64 } from "./assets/elements";
+import { arrayRandomize } from "./utils/helper";
+import { gridSize } from "./store/states";
 
 function App() {
-
-  
   const [showType, setShowType] = useState<boolean>(false);
+  const [isStartGame, setGameStart] = useState<boolean>(false);
+  const [randomizeArray, setRandomizeArray] = useState<string[]>([]);
   const TypeOfGrid = [
     { label: "Easy", size: 4 },
     { label: "Medium", size: 6 },
     { label: "Hard", size: 8 },
   ];
-  const [isStartGame, setGameStart] = useState<boolean>(false);
-  const [gridSize,setGridSize] = useState<number>(4);
+  // mapping with array should be picked
+  const arrayPicking: Record<number, string[]> = {
+    4: emojiArray16,
+    6: emojiArray32,
+    8: emojiArray64,
+  };
+
+
+  const GameModeHandler = (gridsize:number) => {
+    gridSize.value = gridsize // Set the selected grid size
+    setGameStart(true); // Start the game
+    const selectedEmojiArray = arrayPicking[gridSize.value];
+    const randomized = arrayRandomize([...selectedEmojiArray]);
+    setRandomizeArray(randomized);
+  }
+
+  
 
   return (
     <>
@@ -38,16 +55,13 @@ function App() {
               showType ? "opacity-100" : "opacity-0"
             } flex-center flex-row gap-4`}
           >
-            <center className="text-xl">Select one grid</center>
+            <center className="text-xl">Select one mode</center>
             {TypeOfGrid.map((grid) => (
               <button
                 className={`flex items-center justify-center rounded-4xl bg-white text-black border border-gray-400 hover:bg-black hover:text-white p-4 cursor-pointer`}
                 key={grid.label}
                 disabled={!showType}
-                onClick={() => {
-                  setGridSize(grid.size); // Set the selected grid size
-                  setGameStart(true); // Start the game
-                }}
+                onClick={()=>GameModeHandler(grid.size)}
               >
                 {grid.label}
               </button>
@@ -60,7 +74,7 @@ function App() {
             isStartGame ? "-translate-y-full" : "translate-y-0"
           } flex justify-end items-center flex-col gap-3`}
         >
-          <PlayGame size={gridSize}/>
+          <PlayGame size={gridSize.value} randomizeArray={randomizeArray} />
         </div>
       </main>
     </>

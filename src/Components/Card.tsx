@@ -32,7 +32,7 @@ const Card = (props: CardProp) => {
     <>
       <div className="relative h-full w-full">
         <div
-          className="absolute w-full h-full transform-3d transition-all ease-in-out duration-900 rounded-xl"
+          className="absolute w-full h-full transform-3d transition-all ease-in-out duration-700 rounded-xl"
           ref={CardRef}
         >
           <div

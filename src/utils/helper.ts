@@ -1,4 +1,11 @@
-import { CardRefs, compareArray } from "../store/states";
+import {
+  CardRefs,
+  compareArray,
+  counter,
+  player1Move,
+  Player1Point,
+  Player2Point,
+} from "../store/states";
 
 // Array Randomize Function
 export const arrayRandomize = (array: any[]) => {
@@ -32,12 +39,20 @@ export const CompareMoves = () => {
       setTimeout(() => {
         cardRefsArray[0].style.display = "none";
         cardRefsArray[1].style.display = "none";
+        player1Move.value
+          ? (Player1Point.value += 1)
+          : (Player2Point.value += 1);
       }, 1000);
+      counter.value+=2;
     } else {
       // flip backs the cards
       CardFlipback(cardRefsArray[0], cardRefsArray[1]);
+      setTimeout(()=>{
+        player1Move.value = !player1Move.value;
+      },1800)
     }
     setTimeout(() => {
+      
       // reset the refs array
       CardRefs.value.clear();
       // reset the array
