@@ -1,0 +1,53 @@
+.game-header {
+  padding: 1rem 10rem;
+
+  .player {
+    width: 10rem;
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+    border: 3px solid transparent;
+    transition: all 0.3s ease-in;
+    border-color: transparent;
+    flex-direction: column;
+    p {
+      opacity: 0.4;
+      transition: opacity 0.2s ease-in;
+    }
+  }
+
+  .left-box {
+    background: rgba(243, 94, 94, 0.382);
+  }
+  .left-box.active {
+    background: rgba(247, 24, 24, 0.833);
+    border-color: #ffffff78;
+    p {
+      opacity: 1;
+    }
+  }
+
+  .right-box {
+    background: rgba(94, 243, 94, 0.264);
+  }
+  .right-box.active {
+    background: rgba(28, 233, 28, 0.801);
+    border-color: #ffffff78;
+    p {
+      opacity: 1;
+    }
+  }
+
+  .score-turn {
+    flex-grow: 1;
+    padding: 0 1.5rem;
+    img {
+      width: 4rem;
+      height: 4rem;
+      opacity: 0.1;
+      transition: opacity 0.2s ease-in;
+    }
+    img.active-player {
+      opacity: 1;
+    }
+  }
+}

@@ -1,18 +1,18 @@
 import React, { useRef } from "react";
 import { CardRefs, compareArray } from "../store/states";
 import { CompareMoves } from "../utils/helper";
-
+import img from "../assets/img/pokeball/ball03.png";
+import "./cardStyle.css";
 interface CardProp {
   hiddenElement: string;
 }
 
 const Card = (props: CardProp) => {
-  let CardRef = useRef<HTMLDivElement | null>(null);
+  const CardRef = useRef<HTMLDivElement | null>(null);
 
   const Handler = (event: React.MouseEvent) => {
     if (CardRefs.value.size <= 1) {
-      const siblingElement =
-        event.currentTarget.nextElementSibling?.textContent;
+      const siblingElement = event.currentTarget.nextElementSibling?.textContent;
       if (siblingElement) {
         compareArray.value = [...compareArray.value, siblingElement];
         // flip the cards
@@ -36,10 +36,10 @@ const Card = (props: CardProp) => {
           ref={CardRef}
         >
           <div
-            className="absolute w-full h-full backface-hidden bg-blue-500 rounded-xl flex-center text-4xl cursor-pointer"
+            className="absolute w-full h-full backface-hidden rounded-xl flex-center  text-4xl cursor-pointer card"
             onClick={Handler}
           >
-            ⭐
+            <img src={img} alt="pokeBall" />
           </div>
           <div className="absolute w-full h-full backface-hidden bg-black rotate-y-180 rounded-xl flex-center text-4xl">
             {props.hiddenElement}

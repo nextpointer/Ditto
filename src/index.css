@@ -1,8 +1,63 @@
 @import "tailwindcss";
 
-.flex-center{
-    @apply flex justify-center items-center
+.flex-center {
+  @apply flex justify-center items-center;
 }
-button{
-    @apply border-1 border-gray-600  p-4 rounded-4xl flex justify-center items-center hover:bg-green-400 cursor-pointer
+button {
+  @apply border-1 border-gray-600  p-4 rounded-4xl flex justify-center items-center hover:bg-green-400 cursor-pointer;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+
+  /* First Batch */
+  --main-bg: #151617;
+  --secondary-bg-color: #11212d;
+  --secondary-bg-color-2: #253745;
+  --hover-bg-color: #4a5c6a;
+  --gray-text-color: #ccd0cf;
+  --secondary-white-color: #9babab;
+  --white-text-color: #eaeaea;
+
+  --highlight-1: #17d5df;
+  --primary-color: #6da5c0;
+
+  --nav-height: 5rem;
+  --light-border-color: #91908fa6;
+  --border--color: #ffffffbc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--main-bg);
+  /* color: rgb(var(--foreground-rgb)); */
+  width: 100vw;
+  overflow-x: hidden;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  /* Use As Want to use */
 }
