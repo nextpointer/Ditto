@@ -5,6 +5,8 @@ import { useSignals } from "@preact/signals-react/runtime";
 
 // img import
 import ball from "../assets/img/pokeball/Pokeball.png";
+import p1 from "../assets/img/player/p1.png";
+import p2 from "../assets/img/player/p2.png";
 
 interface PropType {
   size: number;
@@ -48,27 +50,37 @@ const PlayGame = (props: PropType) => {
             player1Move.value ? "active" : ""
           }`}
         >
-          <p className="font-bold">Player 1</p>
-          <p className="text-sm">
-            Score -<span> {Player2Point.value}</span>
-          </p>
+          <img src={p1} alt="player1" />
         </div>
         <div className="score-turn flex justify-between items-center ">
-          <img src={ball} alt="poke" className={player1Move.value ? "active-player" : ""} />
+          <div
+            className={`poke-ball flex-center flex-col ${player1Move.value ? "active-player" : ""}`}
+          >
+            <img src={ball} alt="poke" />
+            <p className="text-sm">
+              Score -<span> {Player2Point.value}</span>
+            </p>
+          </div>
           <h2 className="text-xl text-center w-full flex-center">
             {player1Move.value ? "Player 1's turn" : "Player 2's turn"}
           </h2>
-          <img src={ball} alt="poke" className={!player1Move.value ? "active-player" : ""} />
+          <div
+            className={`poke-ball flex-center flex-col ${
+              !player1Move.value ? "active-player" : ""
+            }`}
+          >
+            <img src={ball} alt="poke" />
+            <p className="text-sm">
+              Score -<span> {Player2Point.value}</span>
+            </p>
+          </div>
         </div>
         <div
           className={` right-box player w-full flex-center h-full text-2xl p-2 ${
             !player1Move.value && "active"
           }`}
         >
-          <p className="font-bold">Player 2</p>
-          <p className="text-sm">
-            Score -<span> {Player2Point.value}</span>
-          </p>
+          <img src={p2} alt="player2" />
         </div>
       </div>
       <div

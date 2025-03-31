@@ -8,21 +8,33 @@
     border: 3px solid transparent;
     transition: all 0.3s ease-in;
     border-color: transparent;
-    flex-direction: column;
+
+    position: relative;
+    overflow: hidden;
     p {
       opacity: 0.4;
       transition: opacity 0.2s ease-in;
     }
+
+    img {
+      position: absolute;
+      inset: 0;
+      filter: brightness(0.5) blur(1.2px);
+      transition: filter 0.2s ease-in;
+    }
   }
 
   .left-box {
-    background: rgba(243, 94, 94, 0.382);
+    background: rgba(171, 94, 243, 0.382);
   }
   .left-box.active {
-    background: rgba(247, 24, 24, 0.833);
+    background: rgba(125, 24, 247, 0.83);
     border-color: #ffffff78;
     p {
       opacity: 1;
+    }
+    img {
+      filter: brightness(1) blur(0);
     }
   }
 
@@ -35,18 +47,26 @@
     p {
       opacity: 1;
     }
+    img {
+      filter: brightness(1) blur(0);
+    }
   }
 
   .score-turn {
     flex-grow: 1;
     padding: 0 1.5rem;
-    img {
-      width: 4rem;
-      height: 4rem;
+    .poke-ball {
+      width: 7rem;
+      /* height: 4rem; */
+      aspect-ratio: 1/1;
       opacity: 0.1;
       transition: opacity 0.2s ease-in;
     }
-    img.active-player {
+    img {
+      width: 4rem;
+      height: 4rem;
+    }
+    .poke-ball.active-player {
       opacity: 1;
     }
   }
