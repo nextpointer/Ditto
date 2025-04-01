@@ -51,7 +51,13 @@ export const emojiArray16 = [
   natu,
   natu,
 ];
+
+// this actulay contain 36 elements
 export const emojiArray32 = [
+  balba,
+  balba,
+  rayquza,
+  rayquza,
   sobbel,
   sobbel,
   charizard,

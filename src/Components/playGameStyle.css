@@ -73,5 +73,34 @@
 }
 
 .draw-box {
-  background: rgba(29, 136, 224, 0.992);
+  background: rgba(31, 127, 205, 0.992);
+  border-color: #ffffff78;
+  img {
+    filter: brightness(1) blur(0);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .game-header {
+    padding: 1rem;
+    .score-turn {
+      padding: 0 0.5rem;
+      .poke-ball {
+        width: 2rem;
+      }
+      img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+      }
+    }
+  }
+  .player {
+    width: 5rem;
+    height: 5rem;
+    /* img {
+      width: ;
+      height: 3rem;
+    } */
+  }
 }

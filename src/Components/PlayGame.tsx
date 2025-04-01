@@ -20,9 +20,14 @@ const PlayGame = (props: PropType) => {
   const cells = Array.from({ length: gridSize * gridSize });
   // Define an object to map grid sizes to Tailwind CSS classes
   const gridClasses: Record<number, string> = {
+    4: "md:grid-cols-4 md:grid-rows-4",
+    6: "md:grid-cols-6 md:grid-rows-6",
+    8: "md:grid-cols-8 md:grid-rows-8",
+  };
+  const smGridClasses: Record<number, string> = {
     4: "grid-cols-4 grid-rows-4",
-    6: "grid-cols-6 grid-rows-6",
-    8: "grid-cols-8 grid-rows-8",
+    6: "grid-cols-4 grid-rows-9",
+    8: "grid-cols-4 grid-rows-16",
   };
 
   if (counter.value === gridSize * gridSize) {
@@ -89,10 +94,10 @@ const PlayGame = (props: PropType) => {
           >
             <img src={ball} alt="poke" />
             <p className="text-sm">
-              Score -<span> {Player2Point.value}</span>
+              Score -<span> {Player1Point.value}</span>
             </p>
           </div>
-          <h2 className="text-xl text-center w-full flex-center">
+          <h2 className="md:text-xl text-sm text-center w-full flex-center">
             {player1Move.value ? "Player 1's turn" : "Player 2's turn"}
           </h2>
           <div
@@ -117,7 +122,7 @@ const PlayGame = (props: PropType) => {
       <div
         className={`${gridSize === 4 ? "h-[90vh]" : "h-screen"} w-[80%] grid ${
           gridClasses[gridSize]
-        } gap-2 place-items-center p-4`}
+        } ${smGridClasses[gridSize]} gap-2 place-items-center p-4`}
       >
         {cells.map((_, key) => (
           <div key={key} className=" h-full w-full flex-center">

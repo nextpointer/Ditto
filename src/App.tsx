@@ -60,7 +60,11 @@ function App() {
           >
             Start Game
           </button>
-          <div className={`${showType ? "opacity-100" : "opacity-0"} flex-center flex-row gap-7`}>
+          <div
+            className={`${
+              showType ? "opacity-100" : "opacity-0"
+            } flex-center flex-row md:gap-7 gap-2`}
+          >
             {TypeOfGrid.map((grid) => (
               <button
                 className={`flex items-center justify-center cursor-pointer mode-btn ${
