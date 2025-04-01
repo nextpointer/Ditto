@@ -4,6 +4,17 @@ import { emojiArray16, emojiArray32, emojiArray64 } from "./assets/elements";
 import { arrayRandomize } from "./utils/helper";
 import { gridSize } from "./store/states";
 
+const beforeColor = {
+  Easy: "before:bg-[#1df951]",
+  Medium: "before:bg-[#f2a009]",
+  Hard: "before:bg-[#f20928]",
+};
+const borderColor = {
+  Easy: "#1df951",
+  Medium: "#f2a009",
+  Hard: "#f20928",
+};
+
 function App() {
   const [showType, setShowType] = useState<boolean>(false);
   const [isStartGame, setGameStart] = useState<boolean>(false);
@@ -33,30 +44,42 @@ function App() {
       <main className="h-screen w-full overflow-hidden">
         {/* Game Starting Section */}
         <div
-          className={`h-screen w-full flex-center flex-col gap-4 transition-transform duration-500 ease-in-out ${
+          className={`h-screen w-full flex-center flex-col gap-4 transition-transform duration-500 ease-in-out hero-section ${
             isStartGame ? "-translate-y-full" : "translate-y-0"
           }`}
         >
-          <h1 className="text-4xl text-red">Welcome to Ditto</h1>
+          <h1 className="text-4xl header-text">
+            {!showType ? "Welcome To DITTo" : "Select Play Mode"}
+          </h1>
           <button
             onClick={() => {
               setShowType(true);
             }}
-            disabled={showType ? true : false}
-            className="disabled:opacity-20"
+            disabled={showType}
+            className="disabled:opacity-0 play-btn"
           >
             Start Game
           </button>
-          <div className={`${showType ? "opacity-100" : "opacity-0"} flex-center flex-row gap-4`}>
-            <center className="text-xl">Select one mode</center>
+          <div className={`${showType ? "opacity-100" : "opacity-0"} flex-center flex-row gap-7`}>
             {TypeOfGrid.map((grid) => (
               <button
-                className={`flex items-center justify-center rounded-4xl bg-white text-black border border-gray-400 hover:bg-black hover:text-white p-4 cursor-pointer`}
+                className={`flex items-center justify-center cursor-pointer mode-btn ${
+                  beforeColor[grid.label as keyof typeof beforeColor]
+                } `}
                 key={grid.label}
                 disabled={!showType}
                 onClick={() => GameModeHandler(grid.size)}
               >
-                {grid.label}
+                <p
+                  className={`mode-text border border-[#91908f47] hover:border-[${
+                    borderColor[grid.label as keyof typeof borderColor]
+                  }]`}
+                >
+                  <span>
+                    {grid.size === 4 ? "🟢" : grid.size === 6 ? "🟡" : grid.size === 8 ? "🔴" : ""}
+                  </span>
+                  {grid.label}
+                </p>
               </button>
             ))}
           </div>
