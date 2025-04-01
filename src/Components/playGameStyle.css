@@ -1,57 +1,6 @@
 .game-header {
   padding: 1rem 10rem;
 
-  .player {
-    width: 10rem;
-    aspect-ratio: 1/1;
-    border-radius: 15px;
-    border: 3px solid transparent;
-    transition: all 0.3s ease-in;
-    border-color: transparent;
-
-    position: relative;
-    overflow: hidden;
-    p {
-      opacity: 0.4;
-      transition: opacity 0.2s ease-in;
-    }
-
-    img {
-      position: absolute;
-      inset: 0;
-      filter: brightness(0.5) blur(1.2px);
-      transition: filter 0.2s ease-in;
-    }
-  }
-
-  .left-box {
-    background: rgba(171, 94, 243, 0.382);
-  }
-  .left-box.active {
-    background: rgba(125, 24, 247, 0.83);
-    border-color: #ffffff78;
-    p {
-      opacity: 1;
-    }
-    img {
-      filter: brightness(1) blur(0);
-    }
-  }
-
-  .right-box {
-    background: rgba(94, 243, 94, 0.264);
-  }
-  .right-box.active {
-    background: rgba(28, 233, 28, 0.801);
-    border-color: #ffffff78;
-    p {
-      opacity: 1;
-    }
-    img {
-      filter: brightness(1) blur(0);
-    }
-  }
-
   .score-turn {
     flex-grow: 1;
     padding: 0 1.5rem;
@@ -70,4 +19,59 @@
       opacity: 1;
     }
   }
+}
+
+.player {
+  width: 10rem;
+  aspect-ratio: 1/1;
+  border-radius: 15px;
+  border: 3px solid transparent;
+  transition: all 0.3s ease-in;
+  border-color: transparent;
+
+  position: relative;
+  overflow: hidden;
+  p {
+    opacity: 0.4;
+    transition: opacity 0.2s ease-in;
+  }
+
+  img {
+    position: absolute;
+    inset: 0;
+    filter: brightness(0.5) blur(1.2px);
+    transition: filter 0.2s ease-in;
+  }
+}
+
+.left-box {
+  background: rgba(171, 94, 243, 0.382);
+}
+.left-box.active {
+  background: rgba(125, 24, 247, 0.83);
+  border-color: #ffffff78;
+  p {
+    opacity: 1;
+  }
+  img {
+    filter: brightness(1) blur(0);
+  }
+}
+
+.right-box {
+  background: rgba(94, 243, 94, 0.264);
+}
+.right-box.active {
+  background: rgba(28, 233, 28, 0.801);
+  border-color: #ffffff78;
+  p {
+    opacity: 1;
+  }
+  img {
+    filter: brightness(1) blur(0);
+  }
+}
+
+.draw-box {
+  background: rgba(29, 136, 224, 0.992);
 }

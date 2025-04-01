@@ -7,6 +7,7 @@ import { useSignals } from "@preact/signals-react/runtime";
 import ball from "../assets/img/pokeball/Pokeball.png";
 import p1 from "../assets/img/player/p1.png";
 import p2 from "../assets/img/player/p2.png";
+import draw from "../assets/img/player/draw.png";
 
 interface PropType {
   size: number;
@@ -19,24 +20,54 @@ const PlayGame = (props: PropType) => {
   const cells = Array.from({ length: gridSize * gridSize });
   // Define an object to map grid sizes to Tailwind CSS classes
   const gridClasses: Record<number, string> = {
-    // 4: "grid-cols-4 grid-rows-4",
-    // 6: "grid-cols-6 grid-rows-6",
-    // 8: "grid-cols-8 grid-rows-8",
     4: "grid-cols-4 grid-rows-4",
     6: "grid-cols-6 grid-rows-6",
     8: "grid-cols-8 grid-rows-8",
   };
 
   if (counter.value === gridSize * gridSize) {
+    const result =
+      Player1Point.value > Player2Point.value
+        ? "p1"
+        : Player1Point.value < Player2Point.value
+        ? "p2"
+        : "draw";
+
     return (
       <div className="h-screen w-full flex-center absolute left-0 top-0">
-        <div className=" border border-black rounded-3xl flex flex-col gap-4 p-16 text-3xl">
-          {Player1Point.value > Player2Point.value
-            ? "Player 1 wins"
-            : Player1Point.value < Player2Point.value
-            ? "Player 2 wins"
-            : "It's a draw"}
-          <button onClick={() => window.location.reload()}>Rematch</button>
+        <div className="flex-center flex-col gap-4 p-16 text-3xl">
+          <div
+            className={`player w-full flex-center h-full text-2xl p-2 ${
+              result === "p1"
+                ? "left-box active"
+                : result === "p2"
+                ? "right-box active"
+                : "draw-box"
+            }`}
+          >
+            <img
+              src={
+                Player1Point.value > Player2Point.value
+                  ? p1
+                  : Player1Point.value < Player2Point.value
+                  ? p2
+                  : draw
+              }
+              alt="player1"
+            />
+          </div>
+          <p className="text-[18px] ">
+            {Player1Point.value > Player2Point.value
+              ? "Player 1 wins 🍾"
+              : Player1Point.value < Player2Point.value
+              ? "Player 2 wins 🍾"
+              : "It's a draw 🤝"}
+          </p>
+
+          <button onClick={() => window.location.reload()} className="play-btn">
+            <span className="text-2xl">🔁</span>
+            Rematch
+          </button>
         </div>
       </div>
     );

@@ -7,9 +7,6 @@ interface CardProp {
   hiddenElement: string;
 }
 
-// poker image
-import poke from "../assets/img/pokemons/dialga.png";
-
 const Card = (props: CardProp) => {
   const CardRef = useRef<HTMLDivElement | null>(null);
 
@@ -49,10 +46,10 @@ const Card = (props: CardProp) => {
           {/* Behind - back-face */}
           <div className="absolute w-full h-full backface-hidden rotate-y-180 rounded-xl flex-center text-4xl hidden-card">
             <div className="backside-inside relative flex-center w-full h-full">
-              <img src={poke} alt="random-poke-bg" className="backface-card-img" />
-              {props.hiddenElement}
-
-              <img src={poke} alt="random-poke" className="image-item absolute" />
+              <img src={props.hiddenElement} alt="random-poke-bg" className="backface-card-img" />
+              {/* {props.hiddenElement} */}
+              <p className="invisible">{props.hiddenElement}</p>
+              <img src={props.hiddenElement} alt="random-poke" className="image-item absolute" />
             </div>
           </div>
         </div>
